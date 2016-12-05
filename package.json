@@ -1,0 +1,31 @@
+{
+  "name": "alert-node",
+  "description": "alert-node",
+  "version": "0.0.1",
+  "author": {
+    "name": "Zac Anger",
+    "email": "zac@zacanger.com",
+    "url": "http://zacanger.com"
+  },
+  "license": "WTFPL",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": ""
+  },
+  "homepage": "https://github.com/zacanger/alert-node#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zacanger/alert-node.git"
+  },
+  "bugs": "https://github.com/zacanger/alert-node/issues",
+  "keywords": [
+    "",
+    "alert-node"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}
