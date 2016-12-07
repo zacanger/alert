@@ -2,12 +2,11 @@ const { spawn } = require('child_process')
 const { platform } = process
 
 const chooseAlert = () => {
-  let theAlert, theCmds
   if (process.browser && window && window.alert && typeof window.alert === 'function') {
-    theAlert = (str) => window.alert(str)
-    return theAlert
+    return (str) => window.alert(str)
   } else {
-    theAlert = (cmds) => spawn(cmds[0], cmds.splice(1))
+    const theAlert = (cmds) => spawn(cmds[0], cmds.splice(1))
+    let theCmds
 
     switch (platform) {
       case 'linux':
