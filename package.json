@@ -10,8 +10,7 @@
   "license": "WTFPL",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "test": ""
+    "test": "Echo 'sorry, no.'"
   },
   "homepage": "https://github.com/zacanger/alert-node#readme",
   "repository": {
@@ -20,8 +19,16 @@
   },
   "bugs": "https://github.com/zacanger/alert-node/issues",
   "keywords": [
-    "",
-    "alert-node"
+    "alert",
+    "alert-node",
+    "growl",
+    "node",
+    "notifications",
+    "notify",
+    "notify-send",
+    "window.alert",
+    "yad",
+    "zenity"
   ],
   "dependencies": {},
   "devDependencies": {},
