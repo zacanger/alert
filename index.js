@@ -32,3 +32,10 @@ const chooseAlert = () => {
 }
 
 module.exports = (input = '') => chooseAlert()(input)
+
+/*
+export const alert = () => {}
+export const confirm = () => {}
+export const prompt = () => {}
+export default alert
+*/
