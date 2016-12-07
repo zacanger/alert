@@ -1,9 +1,15 @@
 const { spawn } = require('child_process')
 const { platform } = process
 
+// TODO:
+// is process.browser a real thing?
+// what's like statSync for hash/command?
+// what does windows use?
+// what even is a growl?
+
 const chooseAlert = () => {
   let theAlert, theOS, theCmds
-  if (window && window.alert && typeof window.alert === 'function') {
+  if (process.browser && window && window.alert && typeof window.alert === 'function') {
     theAlert = (str) => window.alert(str)
     return theAlert
   } else {
@@ -28,19 +34,25 @@ const chooseAlert = () => {
     if (theOS === 'nix') {
       // if zenity
       theCmds = (str) => [ 'zenity', '--notification', '--text', str ]
+      // if yad
+      // theCmds = (str) => [ 'yad', '--text', str ]
+      // else notify-send
+      // theCmds = (str) => [ 'notify-send', str]
+      return (str) => theAlert(theCmds(str))
     }
     if (theOS === 'mac') {
       // assuming applescript
       theCmds = (str) => [ 'osascript', '-e', `tell app "System Events" to display dialog "${str}"` ]
+      return (str) => theAlert(theCmds(str))
     }
     if (theOS === 'win') {
       // who the fuck knows
+      return (str) => console.log(str) // for now
     }
 
     if (theOS === 'unknown') {
-      theAlert = (str) => console.log(str)
+      return (str) => console.log(str)
     }
-    // return the alert that chooses the cmds
   }
 }
 
