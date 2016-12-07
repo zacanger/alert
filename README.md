@@ -2,15 +2,18 @@
 
 `alert` for Node.
 
-Using Notify-Send, Yad, Zenity, or whatever.
-
-This doesn't actually do anything yet! But it will.
+Uses `window.alert` in the browser.
+Uses `zenity` on *nix.
+Uses `osascript` on Mac.
+Defaults to `console.log` otherwise (for now).
 
 --------
 
-Installation: `npm i -S alert-node`
+## Installation:
 
-Usage:
+`npm i -S alert-node`
+
+## Usage:
 
 ```javascript
 import alert from 'alert-node'
@@ -18,6 +21,14 @@ import alert from 'alert-node'
 alert('foo')
 ```
 
-This module will only work in Node. If used in the browser, `window.alert` will take precedence.
+## TODO:
+
+* Find out how desktop notifications work in Windows
+* Find a Node-y way of doing hash/command (something like `fs.statSync` but for commands)
+  * Or just exec `hash`
+  * This is so if `zenity` isn't installed, can fall back to `yad`, then `notify-send`
+* What is `growl`
+* Only show `OK` button, I think
+  * Maybe consider adding `confirm` and `prompt` eventually
 
 License: WTFPL

@@ -1,12 +1,6 @@
 const { spawn } = require('child_process')
 const { platform } = process
 
-// TODO:
-// is process.browser a real thing?
-// what's like statSync for hash/command?
-// what does windows use?
-// what even is a growl?
-
 const chooseAlert = () => {
   let theAlert, theOS, theCmds
   if (process.browser && window && window.alert && typeof window.alert === 'function') {
