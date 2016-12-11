@@ -1,5 +1,7 @@
 const { spawn } = require('child_process')
 const { platform } = process
+const { join } = require('path')
+const windowsScript = join(__dirname, 'msgbox.vbs')
 
 const chooseAlert = () => {
   if (process.browser && window && window.alert && typeof window.alert === 'function') {
@@ -14,6 +16,7 @@ const chooseAlert = () => {
       case 'sunos':
         // if zenity
         theCmds = (str) => [ 'zenity', '--notification', '--text', str ]
+        // TODO:
         // if yad
         // theCmds = (str) => [ 'yad', '--text', str ]
         // else notify-send
@@ -24,8 +27,10 @@ const chooseAlert = () => {
         theCmds = (str) => [ 'osascript', '-e', `tell app "System Events" to display dialog "${str}"` ]
         return (str) => theAlert(theCmds(str))
       case 'win32':
-        return (str) => console.log(str) // for now
-      default:
+        // i think this works? see stackoverflow.com/questions/774175
+        theCmds = (str) => [ 'cscript',  windowsScript, str ]
+        return (str) => theAlert(theCmds(str))
+      default: // TODO:
         return (str) => console.log(str)
     }
   }
