@@ -19,15 +19,16 @@ const chooseAlert = () => {
         // TODO:
         // if yad
         // theCmds = (str) => [ 'yad', '--text', str ]
-        // else notify-send
+        // if notify-send
         // theCmds = (str) => [ 'notify-send', str]
+        // else xmessage (TODO)
         return (str) => theAlert(theCmds(str))
       case 'darwin':
         // assuming applescript
         theCmds = (str) => [ 'osascript', '-e', `tell app "System Events" to display dialog "${str}"` ]
         return (str) => theAlert(theCmds(str))
       case 'win32':
-        // i think this works? see stackoverflow.com/questions/774175
+        // TODO: net send? msg thing? i don't know.
         theCmds = (str) => [ 'cscript',  windowsScript, str ]
         return (str) => theAlert(theCmds(str))
       default: // TODO:
