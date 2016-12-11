@@ -15,17 +15,18 @@ const chooseAlert = () => {
       case 'freebsd':
       case 'sunos':
         // if zenity
-        theCmds = (str) => [ 'zenity', '--notification', '--text', str ]
+        theCmds = (str) => [ 'zenity', '--info', '--text', str ]
         // TODO:
         // if yad
-        // theCmds = (str) => [ 'yad', '--text', str ]
+        // theCmds = (str) => [ 'yad', '--text', str, '--button', 'OK' ]
         // if notify-send
         // theCmds = (str) => [ 'notify-send', str]
-        // else xmessage (TODO)
+        // else xmessage
+        // theCmds = (str) => [ 'xmessage', str ]
         return (str) => theAlert(theCmds(str))
       case 'darwin':
         // assuming applescript
-        theCmds = (str) => [ 'osascript', '-e', `tell app "System Events" to display dialog "${str}"` ]
+        theCmds = (str) => [ 'osascript', '-e', `tell app "System Events" to display dialog "${str}" buttons "OK"` ]
         return (str) => theAlert(theCmds(str))
       case 'win32':
         // TODO: net send? msg thing? i don't know.
