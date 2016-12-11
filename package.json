@@ -1,7 +1,7 @@
 {
   "name": "alert-node",
   "description": "alert-node",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": {
     "name": "Zac Anger",
     "email": "zac@zacanger.com",
@@ -9,6 +9,10 @@
   },
   "license": "WTFPL",
   "main": "index.js",
+  "bin": {
+    "alert": "./cli.js",
+    "alert-node": "./cli.js"
+  },
   "scripts": {
     "test": "Echo 'sorry, no.'"
   },

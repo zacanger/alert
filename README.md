@@ -21,6 +21,8 @@ import alert from 'alert-node'
 alert('foo')
 ```
 
+`alert-node` also has a cli. `npm i -g alert-node` and run `alert foo`.
+
 ## TODO:
 
 * Find out how desktop notifications work in Windows
