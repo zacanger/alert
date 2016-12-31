@@ -1,6 +1,7 @@
 const { execFile, spawn } = require('child_process')
 const { platform } = process
 const { join } = require('path')
+const { log, warn } = console
 const windowsScript = join(__dirname, 'msgbox.vbs')
 
 const makeAlert = (input = '') => {
@@ -8,14 +9,14 @@ const makeAlert = (input = '') => {
     return (str) => window.alert(str)
   } else {
     const theAlert = (cmds) => spawn(cmds[0], cmds.splice(1))
-    let theCmds = (str) => [ str ]
+    let theCmds = (str) => [ log, str ]
 
     switch (platform) {
       case 'linux':
       case 'freebsd':
       case 'sunos':
         execFile('./get-cmd.sh', (err, stdout, stderr) => {
-          if (err) return console.warn(`Error: ${err}`)
+          if (err) return warn(`Error: ${err}`)
           switch (stdout.trim()) {
             case 'zenity':
               theCmds = (str) => [ 'zenity', '--info', '--text', str ]
@@ -30,7 +31,7 @@ const makeAlert = (input = '') => {
               theCmds = (str) => [ 'xmessage', str ]
               break
             default:
-              theCmds = (str) => [ str ]
+              theCmds = (str) => [ log, str ]
           }
         })
         return (str) => theAlert(theCmds(str))
@@ -42,7 +43,7 @@ const makeAlert = (input = '') => {
         theCmds = (str) => [ 'cscript',  windowsScript, str ]
         return (str) => theAlert(theCmds(str))
       default: // TODO:
-        return (str) => console.log(str)
+        return (str) => log(str)
     }
   }
 }
