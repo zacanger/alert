@@ -2,10 +2,11 @@
 
 `alert` for Node.
 
-Uses `window.alert` in the browser.
-Uses `zenity` on *nix.
-Uses `osascript` on Mac.
-Defaults to `console.log` otherwise (for now).
+* Uses `window.alert` in the browser.
+* Uses `zenity` on Linux.
+* Uses `osascript` on Mac.
+* Uses `cscript` on Windows.
+* Defaults to `console.log`.
 
 --------
 
@@ -25,12 +26,10 @@ alert('foo')
 
 ## TODO:
 
-* Find out how desktop notifications work in Windows
 * Find a Node-y way of doing hash/command (something like `fs.statSync` but for commands)
   * Or just exec `hash`
-  * This is so if `zenity` isn't installed, can fall back to `yad`, then `notify-send`
+  * This is so if `zenity` isn't installed, can fall back to `yad`, `notify-send`, or `xmessage`
 * What is `growl`
-* Only show `OK` button, I think
-  * Maybe consider adding `confirm` and `prompt` eventually
+* Only show `OK` button,.
 
 License: WTFPL

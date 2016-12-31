@@ -1,31 +1,40 @@
-const { spawn } = require('child_process')
+const { execFile, spawn } = require('child_process')
 const { platform } = process
 const { join } = require('path')
 const windowsScript = join(__dirname, 'msgbox.vbs')
 
-const chooseAlert = () => {
+const makeAlert = (input = '') => {
   if (process.browser && window && window.alert && typeof window.alert === 'function') {
     return (str) => window.alert(str)
   } else {
     const theAlert = (cmds) => spawn(cmds[0], cmds.splice(1))
-    let theCmds
+    let theCmds = (str) => [ str ]
 
     switch (platform) {
       case 'linux':
       case 'freebsd':
       case 'sunos':
-        // if zenity
-        theCmds = (str) => [ 'zenity', '--info', '--text', str ]
-        // TODO:
-        // if yad
-        // theCmds = (str) => [ 'yad', '--text', str, '--button', 'OK' ]
-        // if notify-send
-        // theCmds = (str) => [ 'notify-send', str]
-        // else xmessage
-        // theCmds = (str) => [ 'xmessage', str ]
+        execFile('./get-cmd.sh', (err, stdout, stderr) => {
+          if (err) return console.warn(`Error: ${err}`)
+          switch (stdout.trim()) {
+            case 'zenity':
+              theCmds = (str) => [ 'zenity', '--info', '--text', str ]
+              break
+            case 'yad':
+              theCmds = (str) => [ 'yad', '--text', str, '--button', 'OK' ]
+              break
+            case 'notify-send':
+              theCmds = (str) => [ 'notify-send', str ]
+              break
+            case 'xmessage':
+              theCmds = (str) => [ 'xmessage', str ]
+              break
+            default:
+              theCmds = (str) => [ str ]
+          }
+        })
         return (str) => theAlert(theCmds(str))
       case 'darwin':
-        // assuming applescript
         theCmds = (str) => [ 'osascript', '-e', `tell app "System Events" to display dialog "${str}" buttons "OK"` ]
         return (str) => theAlert(theCmds(str))
       case 'win32':
@@ -38,11 +47,4 @@ const chooseAlert = () => {
   }
 }
 
-module.exports = (input = '') => chooseAlert()(input)
-
-/*
-export const alert = () => {}
-export const confirm = () => {}
-export const prompt = () => {}
-export default alert
-*/
+module.exports = makeAlert()
