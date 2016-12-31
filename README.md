@@ -26,10 +26,8 @@ alert('foo')
 
 ## TODO:
 
-* Find a Node-y way of doing hash/command (something like `fs.statSync` but for commands)
-  * Or just exec `hash`
-  * This is so if `zenity` isn't installed, can fall back to `yad`, `notify-send`, or `xmessage`
-* What is `growl`
-* Only show `OK` button,.
+* What is `growl` even
+* Only show `OK` button (mostly correct already)
+* Fix getting alternatives on Linux (`yad`, `notify-send`, or `xmessage`)
 
 License: WTFPL

@@ -1,7 +1,8 @@
-const { execFile, spawn } = require('child_process')
+const { execFileSync, spawn } = require('child_process')
 const { platform } = process
-const { join } = require('path')
-const { log, warn } = console
+const { join, resolve } = require('path')
+const { log } = console
+const getCmd = resolve(__dirname, 'get-cmd.sh')
 const windowsScript = join(__dirname, 'msgbox.vbs')
 
 const makeAlert = (input = '') => {
@@ -15,25 +16,23 @@ const makeAlert = (input = '') => {
       case 'linux':
       case 'freebsd':
       case 'sunos':
-        execFile('./get-cmd.sh', (err, stdout, stderr) => {
-          if (err) return warn(`Error: ${err}`)
-          switch (stdout.trim()) {
-            case 'zenity':
-              theCmds = (str) => [ 'zenity', '--info', '--text', str ]
-              break
-            case 'yad':
-              theCmds = (str) => [ 'yad', '--text', str, '--button', 'OK' ]
-              break
-            case 'notify-send':
-              theCmds = (str) => [ 'notify-send', str ]
-              break
-            case 'xmessage':
-              theCmds = (str) => [ 'xmessage', str ]
-              break
-            default:
-              theCmds = (str) => [ log, str ]
-          }
-        })
+        const properCmd = execFileSync(getCmd).toString().trim()
+        switch (properCmd) {
+          case 'zenity':
+            theCmds = (str) => [ 'zenity', '--info', '--text', str ]
+            break
+          case 'yad':
+            theCmds = (str) => [ 'yad', '--text', str, '--button', 'OK' ]
+            break
+          case 'notify-send':
+            theCmds = (str) => [ 'notify-send', str ]
+            break
+          case 'xmessage':
+            theCmds = (str) => [ 'xmessage', str ]
+            break
+          default:
+            theCmds = (str) => [ log, str ]
+        }
         return (str) => theAlert(theCmds(str))
       case 'darwin':
         theCmds = (str) => [ 'osascript', '-e', `tell app "System Events" to display dialog "${str}" buttons "OK"` ]
