@@ -3,9 +3,9 @@
 `alert` for Node.
 
 * Uses `window.alert` in the browser.
-* Uses `zenity` on Linux.
-* Uses `osascript` on Mac.
-* Uses `cscript` on Windows.
+* Uses `zenity`, `yad`, `notify-send`, or `xmessage` on Linux and BSD (depending on what's available).
+* Uses `osascript`/`System Events` on Mac.
+* Uses `cscript` on Windows (thanks, StackOverflow).
 * Defaults to `console.log`.
 
 --------
@@ -19,10 +19,10 @@
 ```javascript
 import alert from 'alert-node'
 
-alert('foo')
+alert('howdy')
 ```
 
-`alert-node` also has a cli. `npm i -g alert-node` and run `alert foo`.
+`alert-node` also has a cli. `npm i -g alert-node` and run `alert 'sup brah'`.
 
 ## TODO:
 
