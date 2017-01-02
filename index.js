@@ -10,7 +10,7 @@ const makeAlert = (input = '') => {
     return (str) => window.alert(str)
   } else {
     const theAlert = (cmds) => spawn(cmds[0], cmds.splice(1))
-    let theCmds = (str) => [ log, str ]
+    let theCmds = (str) => [ str ]
 
     switch (platform) {
       case 'linux':
@@ -31,7 +31,7 @@ const makeAlert = (input = '') => {
             theCmds = (str) => [ 'xmessage', str ]
             break
           default:
-            theCmds = (str) => [ log, str ]
+            return (str) => log(str)
         }
         return (str) => theAlert(theCmds(str))
       case 'darwin':

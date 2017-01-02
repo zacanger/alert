@@ -28,6 +28,5 @@ alert('foo')
 
 * What is `growl` even
 * Only show `OK` button (mostly correct already)
-* Fix getting alternatives on Linux (`yad`, `notify-send`, or `xmessage`)
 
 License: WTFPL
