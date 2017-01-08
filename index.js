@@ -38,8 +38,9 @@ const makeAlert = (input = '') => {
         theCmds = (str) => [ 'osascript', '-e', `tell app "System Events" to display dialog "${str}" buttons "OK"` ]
         return (str) => theAlert(theCmds(str))
       case 'win32':
-        // TODO: net send? msg thing? i don't know.
         theCmds = (str) => [ 'cscript',  windowsScript, str ]
+        // TODO:
+        // theCmds = (str) => [ 'msg', '"%username%"', str ]
         return (str) => theAlert(theCmds(str))
       default: // TODO:
         return (str) => log(str)

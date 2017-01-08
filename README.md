@@ -26,7 +26,6 @@ alert('howdy')
 
 ## TODO:
 
-* What is `growl` even
-* Only show `OK` button (mostly correct already)
+If `cscript` thing fails, fallback to `msg` thing.
 
 License: WTFPL
