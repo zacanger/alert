@@ -34,6 +34,9 @@ const makeAlert = (input = '', thingToUse) => {
         case 'cscript':
           theCmds = (str) => [ 'cscript',  windowsScript, str ]
           break
+        case 'msg':
+          theCmds = (str) => [ 'msg', '"%username%"', str ]
+          break
         default:
           return (str) => log(str)
       }
