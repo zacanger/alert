@@ -1,4 +1,4 @@
-const { execFileSync, spawn } = require('child_process')
+const { execSync, execFileSync, spawn } = require('child_process')
 const { platform } = process
 const { join, resolve } = require('path')
 const { log } = console
@@ -77,10 +77,13 @@ const makeAlert = (input = '', thingToUse) => {
         return (str) => theAlert(theCmds(str))
       case 'win32':
         theCmds = (str) => [ 'cscript',  windowsScript, str ]
-        // TODO:
-        // theCmds = (str) => [ 'msg', '"%username%"', str ]
+        try {
+          execSync('cscript')
+        } catch (e) {
+          theCmds = (str) => [ 'msg', '"%username%"', str ]
+        }
         return (str) => theAlert(theCmds(str))
-      default: // TODO:
+      default:
         return (str) => log(str)
     }
   }

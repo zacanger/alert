@@ -5,7 +5,7 @@
 * Uses `window.alert` in the browser.
 * Uses `zenity`, `yad`, `notify-send`, or `xmessage` on Linux and BSD (depending on what's available).
 * Uses `osascript`/`System Events` on Mac.
-* Uses `cscript` on Windows (thanks, StackOverflow).
+* Uses `cscript` on Windows (or `msg` if `cscript` fails).
 * Defaults to `console.log`.
 
 --------
