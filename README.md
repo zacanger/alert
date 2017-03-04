@@ -3,7 +3,8 @@
 `alert` for Node.
 
 * Uses `window.alert` in the browser.
-* Uses `zenity`, `yad`, `notify-send`, or `xmessage` on Linux and BSD (depending on what's available).
+* Uses `zenity`, `yad`, `notify-send`, `xmessage`, `dialog`,
+  or `whiptail` on Linux and BSD (depending on what's available).
 * Uses `osascript`/`System Events` on Mac.
 * Uses `cscript` on Windows (or `msg` if `cscript` fails).
 * Defaults to `console.log`.
@@ -28,6 +29,8 @@ If using the API, you can specify a program to use. This can be one of:
 * yad (Linux)
 * notify-send (Linux)
 * xmessage (Linux)
+* dialog (Linux)
+* whiptail (Linux)
 * osascript (Mac)
 * cscript (Windows)
 * msg (Windows)

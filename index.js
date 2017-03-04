@@ -28,6 +28,12 @@ const makeAlert = (input = '', thingToUse) => {
         case 'xmessage':
           theCmds = (str) => [ 'xmessage', str ]
           break
+        case 'dialog':
+          theCmds = (str) => [ 'dialog', '--msgbox', str, '10', '30' ]
+          break
+        case 'whiptail':
+          theCmds = (str) => [ 'whiptail', '--msgbox', str, '10', '30' ]
+          break
         case 'osascript':
           theCmds = (str) => [ 'osascript', '-e', `tell app "System Events" to display dialog "${str}" buttons "OK"` ]
           break
@@ -67,6 +73,12 @@ const makeAlert = (input = '', thingToUse) => {
             break
           case 'xmessage':
             theCmds = (str) => [ 'xmessage', str ]
+            break
+          case 'dialog':
+            theCmds = (str) => [ 'dialog', '--msgbox', str, '10', '30' ]
+            break
+          case 'whiptail':
+            theCmds = (str) => [ 'whiptail', '--msgbox', str, '10', '30' ]
             break
           default:
             return (str) => log(str)
