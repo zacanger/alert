@@ -7,7 +7,7 @@
     "email": "zac@zacanger.com",
     "url": "http://zacanger.com"
   },
-  "license": "WTFPL",
+  "license": "MIT",
   "main": "index.js",
   "bin": {
     "alert": "./cli.js",
