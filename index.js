@@ -4,6 +4,15 @@ const { join, resolve } = require('path')
 const { log } = console
 const getCmd = resolve(__dirname, 'get-cmd.sh')
 const windowsScript = join(__dirname, 'msgbox.vbs')
+const winScript = (s) => [ 'cscript', windowsScript, s ]
+
+const zenity = (s) => [ 'zenity', '--info', '--text', s ]
+const yad = (s) => [ 'yad', '--text', s, '--button', 'OK' ]
+const notifySend = (s) => [ 'notify-send', s ]
+const xMessage = (s) => [ 'xmessage', s ]
+const dialog = (s) => [ 'dialog', '--msgbox', s, '10', '30' ]
+const whiptail = (s) => [ 'whiptail', '--msbox', s, '10', '30' ]
+const osaScript = (s) => [ 'osascript', '-e', `tell app "System Events" to display dialog "${s}" buttons "OK"` ]
 
 const makeAlert = (input = '', thingToUse) => {
   if (thingToUse) {
@@ -17,28 +26,21 @@ const makeAlert = (input = '', thingToUse) => {
       let theCmds = (str) => [ str ]
       switch (thingToUse) {
         case 'zenity':
-          theCmds = (str) => [ 'zenity', '--info', '--text', str ]
-          break
+          theCmds = zenity; break
         case 'yad':
-          theCmds = (str) => [ 'yad', '--text', str, '--button', 'OK' ]
-          break
+          theCmds = yad; break
         case 'notify-send':
-          theCmds = (str) => [ 'notify-send', str ]
-          break
+          theCmds = notifySend; break
         case 'xmessage':
-          theCmds = (str) => [ 'xmessage', str ]
-          break
+          theCmds = xMessage; break
         case 'dialog':
-          theCmds = (str) => [ 'dialog', '--msgbox', str, '10', '30' ]
-          break
+          theCmds = dialog; break
         case 'whiptail':
-          theCmds = (str) => [ 'whiptail', '--msgbox', str, '10', '30' ]
-          break
+          theCmds = whiptail; break
         case 'osascript':
-          theCmds = (str) => [ 'osascript', '-e', `tell app "System Events" to display dialog "${str}" buttons "OK"` ]
-          break
+          theCmds = osaScript; break
         case 'cscript':
-          theCmds = (str) => [ 'cscript',  windowsScript, str ]
+          theCmds = winScript
           break
         case 'msg':
           theCmds = (str) => [ 'msg', '"%username%"', str ]
@@ -63,32 +65,26 @@ const makeAlert = (input = '', thingToUse) => {
         const properCmd = execFileSync(getCmd).toString().trim()
         switch (properCmd) {
           case 'zenity':
-            theCmds = (str) => [ 'zenity', '--info', '--text', str ]
-            break
+            theCmds = zenity; break
           case 'yad':
-            theCmds = (str) => [ 'yad', '--text', str, '--button', 'OK' ]
-            break
+            theCmds = yad; break
           case 'notify-send':
-            theCmds = (str) => [ 'notify-send', str ]
-            break
+            theCmds = notifySend; break
           case 'xmessage':
-            theCmds = (str) => [ 'xmessage', str ]
-            break
+            theCmds = xMessage; break
           case 'dialog':
-            theCmds = (str) => [ 'dialog', '--msgbox', str, '10', '30' ]
-            break
+            theCmds = dialog; break
           case 'whiptail':
-            theCmds = (str) => [ 'whiptail', '--msgbox', str, '10', '30' ]
-            break
+            theCmds = whiptail; break
           default:
             return (str) => log(str)
         }
         return (str) => theAlert(theCmds(str))
       case 'darwin':
-        theCmds = (str) => [ 'osascript', '-e', `tell app "System Events" to display dialog "${str}" buttons "OK"` ]
+        theCmds = osaScript
         return (str) => theAlert(theCmds(str))
       case 'win32':
-        theCmds = (str) => [ 'cscript',  windowsScript, str ]
+        theCmds = winScript
         try {
           execSync('cscript')
         } catch (e) {
