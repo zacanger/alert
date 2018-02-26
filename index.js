@@ -41,7 +41,7 @@ const makeAlert = (input = '', thingToUse) => {
         case 'whiptail': theCmds = whiptail; break
         case 'osascript': theCmds = osaScript; break
         case 'cscript': theCmds = winScript; break
-        case 'msg': theCmds = (str) => [ 'msg', '"%username%"', str ]; break
+        case 'msg': theCmds = winMsg; break
         default: return (str) => log(str)
       }
       return (str) => theAlert(theCmds(str))
