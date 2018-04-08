@@ -15,7 +15,7 @@ const dialog = (s) => [ 'dialog', '--msgbox', s, '10', '30' ]
 const whiptail = (s) => [ 'whiptail', '--msbox', s, '10', '30' ]
 const osaScript = (s) => [ 'osascript', '-e', `tell app "System Events" to display dialog "${s}" buttons "OK"` ]
 
-const hasCscript = (() => {
+const hasCscript = platform.startsWith('win') && (() => {
   try {
     execSync('cscript')
     return true
