@@ -48,7 +48,7 @@ const makeAlert = (input = '', thingToUse) => {
     }
   }
 
-  if (process.browser && window && window.alert && typeof window.alert === 'function') {
+  if (process.browser && typeof window !== 'undefined' && typeof window.alert === 'function') {
     return (str) => window.alert(str)
   } else {
     const theAlert = (cmds) => spawn(cmds[0], cmds.splice(1))
