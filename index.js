@@ -22,6 +22,7 @@ const hasCscript = platform.startsWith('win') && (() => {
   } catch (_) {}
 })()
 
+// eslint-disable-next-line no-unused-vars
 const makeAlert = (input = '', thingToUse) => {
   if (thingToUse) {
     if (thingToUse === 'window') {
