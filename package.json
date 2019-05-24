@@ -3,8 +3,8 @@
   "description": "alert-node",
   "version": "1.2.4",
   "author": {
-    "name": "Zac Anger",
     "email": "zac@zacanger.com",
+    "name": "Zac Anger",
     "url": "http://zacanger.com"
   },
   "license": "MIT",
@@ -14,9 +14,9 @@
     "alert-node": "./cli.js"
   },
   "scripts": {
+    "preversion": "npm t",
     "test": "npm run test:lint",
-    "test:lint": "eslint -c .eslintrc.json *.js",
-    "preversion": "npm t"
+    "test:lint": "sortpack && standard"
   },
   "homepage": "https://github.com/zacanger/alert-node#readme",
   "repository": {
@@ -38,14 +38,8 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "babel-eslint": "10.0.1",
-    "eslint": "5.16.0",
-    "eslint-config-zacanger": "3.4.2",
-    "eslint-plugin-babel": "5.3.0",
-    "eslint-plugin-import": "2.17.2",
-    "eslint-plugin-node": "8.0.1",
-    "eslint-plugin-promise": "4.1.1",
-    "eslint-plugin-unicorn": "8.0.2"
+    "sortpack": "1.1.6",
+    "standard": "12.0.1"
   },
   "engines": {
     "node": ">=6.0.0"
