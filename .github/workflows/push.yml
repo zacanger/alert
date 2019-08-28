@@ -1,0 +1,16 @@
+on: push
+name: Build and Test
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Build
+      uses: actions/npm@master
+      with:
+        args: ci
+    - name: Test
+      uses: actions/npm@master
+      with:
+        args: t
