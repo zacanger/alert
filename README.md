@@ -47,4 +47,4 @@ alert('hey!', 'yad')
 
 `alert-node` also has a cli. `npm i -g alert-node` and run `alert 'sup brah'`.
 
-License: [MIT](./LICENSE.md)
+[LICENSE](./LICENSE.md)
