@@ -1,6 +1,8 @@
 #!/bin/sh
 
-if hash zenity 2>/dev/null ; then
+if hash kdialog 2>/dev/null ; then
+  C=kdialog
+elif hash zenity 2>/dev/null ; then
   C=zenity
 elif hash yad 2>/dev/null ; then
   C=yad
