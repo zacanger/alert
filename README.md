@@ -26,12 +26,13 @@ alert('howdy')
 
 If using the API, you can specify a program to use. This can be one of:
 
-* zenity (Linux)
-* yad (Linux)
-* notify-send (Linux)
-* xmessage (Linux)
 * dialog (Linux)
+* kdialog (Linux)
+* notify-send (Linux)
 * whiptail (Linux)
+* xmessage (Linux)
+* yad (Linux)
+* zenity (Linux)
 * osascript (Mac)
 * cscript (Windows)
 * msg (Windows)
