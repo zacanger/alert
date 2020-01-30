@@ -29,8 +29,7 @@ const hasCscript =
     } catch (_) {}
   })()
 
-// eslint-disable-next-line no-unused-vars
-const makeAlert = (input = '', thingToUse) => {
+const getAlert = (thingToUse) => {
   if (thingToUse) {
     if (thingToUse === 'window') {
       return (str) => window.alert(str)
@@ -134,4 +133,6 @@ const makeAlert = (input = '', thingToUse) => {
   }
 }
 
-module.exports = makeAlert()
+const makeAlert = (input = '', thingToUse = '') => getAlert(thingToUse)(input)
+
+module.exports = makeAlert
