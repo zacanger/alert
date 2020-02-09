@@ -40,12 +40,14 @@
     "yad",
     "zenity"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "is-program-installed": "2.0.3"
+  },
   "devDependencies": {
     "eslint": "6.8.0",
     "eslint-plugin-zacanger": "1.0.2",
     "husky": "4.2.1",
-    "lint-staged": "10.0.6",
+    "lint-staged": "10.0.7",
     "prettier": "1.19.1",
     "sortpack": "2.1.1"
   },

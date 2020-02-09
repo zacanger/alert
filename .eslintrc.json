@@ -17,6 +17,7 @@
     "fp/no-unused-expression":0,
     "fp/no-mutating-methods": 0,
     "fp/no-let": 0,
-    "fp/no-nil": 0
+    "fp/no-nil": 0,
+    "no-console": 0
   }
 }

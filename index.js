@@ -1,9 +1,21 @@
-const { execSync, execFileSync, spawn } = require('child_process')
+const { execSync, spawn } = require('child_process')
 const { platform } = process
-const { join, resolve } = require('path')
-const { log } = console
-const getCmd = resolve(__dirname, 'get-cmd.sh')
+const { join } = require('path')
+const isProgramInstalled = require('is-program-installed')
 const windowsScript = join(__dirname, 'msgbox.vbs')
+
+const unixPrograms = [
+  'kdialog',
+  'zenity',
+  'yad',
+  'notify-send',
+  'xmessage',
+  'dialog',
+  'whiptail',
+]
+
+const bestUnixProgram =
+  unixPrograms.filter(isProgramInstalled)[0] || console.log
 
 const winScript = (s) => ['cscript', windowsScript, s]
 const winMsg = (str) => ['msg', '"%username%"', str]
@@ -35,7 +47,7 @@ const getAlert = (thingToUse) => {
       return (str) => window.alert(str)
     }
     if (thingToUse === 'console') {
-      return (str) => log(str)
+      return (str) => console.log(str)
     } else {
       const theAlert = (cmds) => spawn(cmds[0], cmds.splice(1))
       let theCmds = (str) => [str]
@@ -71,7 +83,7 @@ const getAlert = (thingToUse) => {
           theCmds = zenity
           break
         default:
-          return (str) => log(str)
+          return (str) => console.log(str)
       }
       return (str) => theAlert(theCmds(str))
     }
@@ -92,9 +104,7 @@ const getAlert = (thingToUse) => {
       case 'freebsd':
       case 'sunos':
         // eslint-disable-next-line
-        const properCmd = execFileSync(getCmd)
-          .toString()
-          .trim()
+        const properCmd = bestUnixProgram
         switch (properCmd) {
           case 'dialog':
             theCmds = dialog
@@ -118,7 +128,7 @@ const getAlert = (thingToUse) => {
             theCmds = zenity
             break
           default:
-            return (str) => log(str)
+            return (str) => console.log(str)
         }
         return (str) => theAlert(theCmds(str))
       case 'darwin':
@@ -128,7 +138,7 @@ const getAlert = (thingToUse) => {
         theCmds = hasCscript ? winScript : winMsg
         return (str) => theAlert(theCmds(str))
       default:
-        return (str) => log(str)
+        return (str) => console.log(str)
     }
   }
 }
