@@ -37,7 +37,6 @@ If using the API, you can specify a program to use. This can be one of:
 * cscript (Windows)
 * msg (Windows)
 * console (`console.log`)
-* window (`window.alert`)
 
 Note that this will override any internal checks to get the correct program,
 and will blow up if you get it wrong. It's advised to just use the default behavior.
