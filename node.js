@@ -19,16 +19,16 @@ const unixPrograms = [
 const bestUnixProgram =
   unixPrograms.filter(isProgramInstalled)[0] || console.log
 
-const winScript = (s) => ['cscript', windowsScript, s]
-const winMsg = (str) => ['msg', '"%username%"', str]
+const cscript = (s) => ['cscript', windowsScript, s]
+const msg = (str) => ['msg', '"%username%"', str]
 const zenity = (s) => ['zenity', '--info', '--text', s]
 const yad = (s) => ['yad', '--text', s, '--button', 'OK']
 const notifySend = (s) => ['notify-send', s]
-const xMessage = (s) => ['xmessage', s]
+const xmessage = (s) => ['xmessage', s]
 const dialog = (s) => ['dialog', '--msgbox', s, '10', '30']
 const whiptail = (s) => ['whiptail', '--msbox', s, '10', '30']
-const kDialog = (s) => ['kdialog', '--msgbox', s]
-const osaScript = (s) => [
+const kdialog = (s) => ['kdialog', '--msgbox', s]
+const osascript = (s) => [
   'osascript',
   '-e',
   `tell app "System Events" to display dialog "${s}" buttons "OK"`,
@@ -44,59 +44,49 @@ const hasCscript =
   })()
 
 const nameMap = {
-  cscript: winScript,
+  console: console.log,
+  cscript,
   dialog,
-  kdialog: kDialog,
-  msg: winMsg,
-  osascript: osaScript,
+  kdialog,
+  msg,
   'notify-send': notifySend,
+  osascript,
   whiptail,
-  xmessage: xMessage,
+  xmessage,
   yad,
   zenity,
-  console: console.log,
 }
 
 const getAlert = (input = '', thingToUse = '') => {
   const execInput = (cmd) => execCmd(cmd(input))
 
+  // if there's a second argument, we try to exec that one
+  // if we can't, fall back to console
   if (thingToUse) {
-    console.log(thingToUse)
+    if (thingToUse === 'console') {
+      return console.log(input)
+    }
     const choice = nameMap[thingToUse]
-    if (choice) {
-      console.log(choice)
+    if (choice && choice !== 'console') {
       return execInput(choice)
     }
     return console.log(input)
   }
 
+  // if no second argument, we try to find the best program
+  // if we can't find any, fall back to console
   switch (platform) {
     case 'linux':
     case 'freebsd':
     case 'sunos':
-      const properCmd = bestUnixProgram
-      switch (properCmd) {
-        case 'dialog':
-          return execInput(dialog)
-        case 'kdialog':
-          return execInput(kDialog)
-        case 'notify-send':
-          return execInput(notifySend)
-        case 'whiptail':
-          return execInput(whiptail)
-        case 'xmessage':
-          return execInput(xMessage)
-        case 'yad':
-          return execInput(yad)
-        case 'zenity':
-          return execInput(zenity)
-        default:
-          return console.log(input)
+      if (nameMap[bestUnixProgram]) {
+        return execInput(nameMap[bestUnixProgram])
       }
+      return console.log(input)
     case 'darwin':
-      return execInput(osaScript)
+      return execInput(osascript)
     case 'win32':
-      return hasCscript ? execInput(winScript) : execInput(winMsg)
+      return hasCscript ? execInput(cscript) : execInput(msg)
     default:
       return console.log(input)
   }
