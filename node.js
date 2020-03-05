@@ -4,6 +4,8 @@ const { join } = require('path')
 const isProgramInstalled = require('is-program-installed')
 const windowsScript = join(__dirname, 'msgbox.vbs')
 
+const execCmd = (cmds) => spawn(cmds[0], cmds.splice(1))
+
 const unixPrograms = [
   'kdialog',
   'zenity',
@@ -41,53 +43,32 @@ const hasCscript =
     } catch (_) {}
   })()
 
-const getAlert = (thingToUse) => {
-  if (thingToUse) {
-    if (thingToUse === 'console') {
-      return (str) => console.log(str)
-    } else {
-      const theAlert = (cmds) => spawn(cmds[0], cmds.splice(1))
-      let theCmds = (str) => [str]
-      switch (thingToUse) {
-        case 'cscript':
-          theCmds = winScript
-          break
-        case 'dialog':
-          theCmds = dialog
-          break
-        case 'kdialog':
-          theCmds = kDialog
-          break
-        case 'msg':
-          theCmds = winMsg
-          break
-        case 'notify-send':
-          theCmds = notifySend
-          break
-        case 'osascript':
-          theCmds = osaScript
-          break
-        case 'whiptail':
-          theCmds = whiptail
-          break
-        case 'xmessage':
-          theCmds = xMessage
-          break
-        case 'yad':
-          theCmds = yad
-          break
-        case 'zenity':
-          theCmds = zenity
-          break
-        default:
-          return (str) => console.log(str)
-      }
-      return (str) => theAlert(theCmds(str))
-    }
-  }
+const nameMap = {
+  cscript: winScript,
+  dialog,
+  kdialog: kDialog,
+  msg: winMsg,
+  osascript: osaScript,
+  'notify-send': notifySend,
+  whiptail,
+  xmessage: xMessage,
+  yad,
+  zenity,
+  console: console.log,
+}
 
-  const theAlert = (cmds) => spawn(cmds[0], cmds.splice(1))
-  let theCmds = (str) => [str]
+const getAlert = (input = '', thingToUse = '') => {
+  const execInput = (cmd) => execCmd(cmd(input))
+
+  if (thingToUse) {
+    console.log(thingToUse)
+    const choice = nameMap[thingToUse]
+    if (choice) {
+      console.log(choice)
+      return execInput(choice)
+    }
+    return console.log(input)
+  }
 
   switch (platform) {
     case 'linux':
@@ -97,41 +78,29 @@ const getAlert = (thingToUse) => {
       const properCmd = bestUnixProgram
       switch (properCmd) {
         case 'dialog':
-          theCmds = dialog
-          break
+          return execInput(dialog)
         case 'kdialog':
-          theCmds = kDialog
-          break
+          return execInput(kDialog)
         case 'notify-send':
-          theCmds = notifySend
-          break
+          return execInput(notifySend)
         case 'whiptail':
-          theCmds = whiptail
-          break
+          return execInput(whiptail)
         case 'xmessage':
-          theCmds = xMessage
-          break
+          return execInput(xMessage)
         case 'yad':
-          theCmds = yad
-          break
+          return execInput(yad)
         case 'zenity':
-          theCmds = zenity
-          break
+          return execInput(zenity)
         default:
-          return (str) => console.log(str)
+          return console.log(input)
       }
-      return (str) => theAlert(theCmds(str))
     case 'darwin':
-      theCmds = osaScript
-      return (str) => theAlert(theCmds(str))
+      return execInput(osaScript)
     case 'win32':
-      theCmds = hasCscript ? winScript : winMsg
-      return (str) => theAlert(theCmds(str))
+      return hasCscript ? execInput(winScript) : execInput(winMsg)
     default:
-      return (str) => console.log(str)
+      return console.log(input)
   }
 }
 
-const makeAlert = (input = '', thingToUse = '') => getAlert(thingToUse)(input)
-
-module.exports = makeAlert
+module.exports = getAlert
