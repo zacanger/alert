@@ -74,7 +74,6 @@ const getAlert = (input = '', thingToUse = '') => {
     case 'linux':
     case 'freebsd':
     case 'sunos':
-      // eslint-disable-next-line
       const properCmd = bestUnixProgram
       switch (properCmd) {
         case 'dialog':
