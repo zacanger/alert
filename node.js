@@ -60,17 +60,19 @@ const nameMap = {
 const getAlert = (input = '', thingToUse = '') => {
   const execInput = (cmd) => execCmd(cmd(input))
 
+  const pickFromNameMap = (option = bestUnixProgram) => {
+    if (option !== 'console') {
+      if (nameMap[option]) {
+        return execInput(nameMap[option])
+      }
+    }
+    return console.log(input)
+  }
+
   // if there's a second argument, we try to exec that one
   // if we can't, fall back to console
   if (thingToUse) {
-    if (thingToUse === 'console') {
-      return console.log(input)
-    }
-    const choice = nameMap[thingToUse]
-    if (choice && choice !== 'console') {
-      return execInput(choice)
-    }
-    return console.log(input)
+    return pickFromNameMap(thingToUse)
   }
 
   // if no second argument, we try to find the best program
@@ -79,10 +81,7 @@ const getAlert = (input = '', thingToUse = '') => {
     case 'linux':
     case 'freebsd':
     case 'sunos':
-      if (nameMap[bestUnixProgram]) {
-        return execInput(nameMap[bestUnixProgram])
-      }
-      return console.log(input)
+      return pickFromNameMap(bestUnixProgram)
     case 'darwin':
       return execInput(osascript)
     case 'win32':
