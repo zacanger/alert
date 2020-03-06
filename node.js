@@ -69,14 +69,10 @@ const getAlert = (input = '', thingToUse = '') => {
     return console.log(input)
   }
 
-  // if there's a second argument, we try to exec that one
-  // if we can't, fall back to console
   if (thingToUse) {
     return pickFromNameMap(thingToUse)
   }
 
-  // if no second argument, we try to find the best program
-  // if we can't find any, fall back to console
   switch (platform) {
     case 'linux':
     case 'freebsd':
