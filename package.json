@@ -32,6 +32,8 @@
     "alert",
     "alert-node",
     "growl",
+    "isomorphic",
+    "kdialog",
     "node",
     "notifications",
     "notify",
