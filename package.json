@@ -66,5 +66,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "typings": "alert-node.d.ts"
 }
