@@ -1,7 +1,7 @@
 {
   "name": "alert-node",
   "description": "Cross-platform, isomorphic alert, for Node and browser",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "author": {
     "email": "zac@zacanger.com",
     "name": "Zac Anger",
