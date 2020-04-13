@@ -1,6 +1,6 @@
 {
   "name": "alert",
-  "description": "Cross-platform, isomorphic alert, for Node and browser",
+  "description": "Cross-platform, isomorphic alert, for Node and browser (previously alert-node)",
   "version": "4.0.0",
   "author": {
     "email": "zac@zacanger.com",
