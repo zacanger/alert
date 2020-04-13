@@ -1,5 +1,5 @@
 {
-  "name": "alert-node",
+  "name": "alert",
   "description": "Cross-platform, isomorphic alert, for Node and browser",
   "version": "3.0.11",
   "author": {
@@ -14,23 +14,21 @@
   "license": "LGPL-3.0",
   "main": "index.js",
   "bin": {
-    "alert": "./cli.js",
-    "alert-node": "./cli.js"
+    "alert": "./cli.js"
   },
   "scripts": {
     "preversion": "npm t",
     "test": "npm run test:lint",
     "test:lint": "eslint -c .eslintrc.json *.js"
   },
-  "homepage": "https://github.com/zacanger/alert-node#readme",
+  "homepage": "https://github.com/zacanger/alert#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zacanger/alert-node.git"
+    "url": "https://github.com/zacanger/alert.git"
   },
-  "bugs": "https://github.com/zacanger/alert-node/issues",
+  "bugs": "https://github.com/zacanger/alert/issues",
   "keywords": [
     "alert",
-    "alert-node",
     "growl",
     "isomorphic",
     "kdialog",
@@ -69,5 +67,5 @@
       "pre-commit": "lint-staged"
     }
   },
-  "typings": "alert-node.d.ts"
+  "typings": "alert.d.ts"
 }
