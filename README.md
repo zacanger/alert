@@ -52,4 +52,6 @@ alert('hey!', 'yad')
 
 `alert` also has a cli. `npm i -g alert` and run `alert 'sup brah'`.
 
+To disable alert for testing purposes or otherwise, you can set an environment variable `DISABLE_ALERT=1`.
+
 [LICENSE](./LICENSE.md)

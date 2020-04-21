@@ -87,4 +87,4 @@ const getAlert = (input = '', thingToUse = '') => {
   }
 }
 
-module.exports = getAlert
+module.exports = process.env.DISABLE_ALERT !== '1' ? getAlert : () => {}
