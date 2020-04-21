@@ -59,6 +59,7 @@ const nameMap = {
 
 const getAlert = (input = '', thingToUse = '') => {
   const execInput = (cmd) => execCmd(cmd(input))
+
   const pickFromNameMap = (option = bestUnixProgram) => {
     if (option !== 'console') {
       if (nameMap[option]) {
