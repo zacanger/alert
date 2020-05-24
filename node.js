@@ -40,7 +40,9 @@ const hasCscript =
     try {
       execSync('cscript')
       return true
-    } catch (_) {}
+    } catch {
+      return false
+    }
   })()
 
 const nameMap = {
