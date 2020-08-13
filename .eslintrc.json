@@ -18,6 +18,7 @@
     "fp/no-mutating-methods": 0,
     "fp/no-let": 0,
     "fp/no-nil": 0,
+    "unicorn/prefer-array-find": 0,
     "no-console": 0
   }
 }
