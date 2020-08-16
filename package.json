@@ -1,5 +1,5 @@
 {
-  "name": "alert",
+  "name": "alert-node",
   "description": "Cross-platform, isomorphic alert, for Node and browser (previously alert-node)",
   "version": "5.0.2",
   "author": {
@@ -17,6 +17,7 @@
     "alert": "./cli.js"
   },
   "scripts": {
+    "postinstall": "node ./message.js",
     "preversion": "npm t",
     "test": "npm run test:lint",
     "test:lint": "eslint -c .eslintrc.json *.js"
@@ -54,7 +55,7 @@
     "is-program-installed": "2.1.1"
   },
   "devDependencies": {
-    "eslint": "7.6.0",
+    "eslint": "7.7.0",
     "eslint-plugin-zacanger": "2.0.6",
     "husky": "4.2.5",
     "lint-staged": "10.2.11",
