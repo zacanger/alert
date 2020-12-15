@@ -51,15 +51,15 @@
     "zenity"
   ],
   "dependencies": {
-    "is-program-installed": "2.1.3"
+    "is-program-installed": "2.1.4"
   },
   "devDependencies": {
     "eslint": "7.15.0",
-    "eslint-plugin-zacanger": "2.2.0",
-    "husky": "4.3.5",
+    "eslint-plugin-zacanger": "2.2.1",
+    "husky": "4.3.6",
     "lint-staged": "10.5.3",
     "prettier": "2.2.1",
-    "sortpack": "2.1.10"
+    "sortpack": "2.1.11"
   },
   "engines": {
     "node": ">=10.0.0"
