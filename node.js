@@ -16,8 +16,7 @@ const unixPrograms = [
   'whiptail',
 ]
 
-const bestUnixProgram =
-  unixPrograms.filter(isProgramInstalled)[0] || 'console'
+const bestUnixProgram =unixPrograms.filter(isProgramInstalled)[0] || "console"
 
 const cscript = (s) => ['cscript', windowsScript, s]
 const msg = (str) => ['msg', '"%username%"', str]
