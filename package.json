@@ -54,8 +54,8 @@
     "is-program-installed": "2.1.4"
   },
   "devDependencies": {
-    "eslint": "7.15.0",
-    "eslint-plugin-zacanger": "2.2.1",
+    "eslint": "7.16.0",
+    "eslint-plugin-zacanger": "2.2.2",
     "husky": "4.3.6",
     "lint-staged": "10.5.3",
     "prettier": "2.2.1",
