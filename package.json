@@ -1,7 +1,7 @@
 {
   "name": "alert",
   "description": "Cross-platform, isomorphic alert, for Node and browser (previously alert-node)",
-  "version": "5.0.8",
+  "version": "5.0.9",
   "author": {
     "email": "zac@zacanger.com",
     "name": "Zac Anger",
@@ -14,7 +14,7 @@
   "license": "LGPL-3.0",
   "main": "index.js",
   "bin": {
-    "alert": "./cli.js"
+    "alert": "cli.js"
   },
   "scripts": {
     "preversion": "npm t",
