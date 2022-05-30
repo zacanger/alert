@@ -18,8 +18,7 @@
   },
   "scripts": {
     "preversion": "npm t",
-    "test": "npm run test:lint",
-    "test:lint": "eslint -c .eslintrc.json *.js"
+    "test": "standard"
   },
   "homepage": "https://github.com/zacanger/alert#readme",
   "repository": {
@@ -51,31 +50,14 @@
     "zenity"
   ],
   "dependencies": {
-    "is-program-installed": "2.2.0"
+    "is-program-installed": "2.3.1"
   },
   "devDependencies": {
-    "eslint": "7.17.0",
-    "eslint-plugin-zacanger": "2.2.3",
-    "husky": "4.3.6",
-    "lint-staged": "10.5.3",
-    "prettier": "2.2.1",
-    "sortpack": "2.1.11"
+    "sortpack": "2.2.2",
+    "standard": "17.0.0"
   },
   "engines": {
     "node": ">=10.0.0"
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write"
-    ],
-    "package.json": [
-      "sortpack"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "typings": "alert.d.ts"
 }

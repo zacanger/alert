@@ -13,7 +13,7 @@ const unixPrograms = [
   'notify-send',
   'xmessage',
   'dialog',
-  'whiptail',
+  'whiptail'
 ]
 
 const bestUnixProgram = unixPrograms.filter(isProgramInstalled)[0] || 'console'
@@ -30,7 +30,7 @@ const kdialog = (s) => ['kdialog', '--msgbox', s]
 const osascript = (s) => [
   'osascript',
   '-e',
-  `tell app "System Events" to display dialog "${s}" buttons "OK"`,
+  `tell app "System Events" to display dialog "${s}" buttons "OK"`
 ]
 
 const hasCscript =
@@ -55,7 +55,7 @@ const nameMap = {
   whiptail,
   xmessage,
   yad,
-  zenity,
+  zenity
 }
 
 const getAlert = (input = '', thingToUse = '') => {
