@@ -50,10 +50,10 @@
     "zenity"
   ],
   "dependencies": {
-    "is-program-installed": "2.3.1"
+    "is-program-installed": "2.3.4"
   },
   "devDependencies": {
-    "sortpack": "2.2.3",
+    "sortpack": "2.3.0",
     "standard": "17.0.0"
   },
   "engines": {

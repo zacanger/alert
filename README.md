@@ -1,12 +1,5 @@
 # alert
 
-## DEPRECATED
-
-I highly recommend using
-[node-notifier](https://github.com/mikaelbr/node-notifier) or
-[node-notifier-cli](https://github.com/mikaelbr/node-notifier-cli) rather than
-this project; they're better tested, maintained, and more featureful.
-
 ----
 
 Cross-platform, isomorphic alert, for Node and browser (previously alert-node)
