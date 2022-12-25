@@ -1,5 +1,9 @@
 # alert
 
+Deprecated: use `node-notifier` instead, it's better maintained, has more
+options, and is all-around a better package. `alert` will not get any new
+updates.
+
 ----
 
 Cross-platform, isomorphic alert, for Node and browser (previously alert-node)
