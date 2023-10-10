@@ -1,5 +1,6 @@
 {
   "name": "alert",
+  "private": true,
   "description": "Cross-platform, isomorphic alert, for Node and browser (previously alert-node)",
   "version": "5.1.4",
   "author": {

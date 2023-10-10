@@ -1,6 +1,10 @@
 # alert
 
-Deprecated: use `node-notifier` instead, it's better maintained, has more
+NOTICE: the `alert` package name on npm has been given away. This has been
+deprecated for a long time. See below. Don't use `alert` from npm if you're
+expecting an isomorphic alert package.
+
+NOTICE: deprecated use `node-notifier` instead, it's better maintained, has more
 options, and is all-around a better package. `alert` will not get any new
 updates.
 
